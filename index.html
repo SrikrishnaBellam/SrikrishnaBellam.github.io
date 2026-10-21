@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sri Krishna Bellam — AI Researcher</title>
   <meta name="description" content="Sri Krishna Bellam — AI Researcher, deep learning from first principles. M.S. in Artificial Intelligence, Northeastern University." />
+  <meta name="theme-color" content="#09090b" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -16,11 +17,12 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-            mono: ['"Roboto Mono"', 'ui-monospace', 'monospace'],
+            sans: ['Geist', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"Geist Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
           },
           colors: {
-            ink: { 950: '#070b14', 900: '#0b1120', 800: '#111a2e', 700: '#1a2540' },
+            ink: { 950: '#09090b', 900: '#0d0d10', 800: '#131317', 700: '#1c1c22' },
+            accent: { DEFAULT: '#22d3ee', soft: '#67e8f9' },
           },
         },
       },
@@ -28,155 +30,243 @@
   </script>
 
   <style>
-    body { background: #0b1120; }
-    /* Subtle dot grid behind the hero */
+    body { background: #09090b; }
+
+    /* Hairline grid that fades out toward the edges */
     .grid-bg {
-      background-image: radial-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
-      -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 75%);
+      background-image:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 30%, transparent 80%);
     }
+
     /* Scroll-reveal */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: none; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
     }
-    /* Card hover: lift + expanding glow */
-    .card { transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px -12px rgba(34, 211, 238, 0.18), 0 0 0 1px rgba(34, 211, 238, 0.25);
-      border-color: rgba(34, 211, 238, 0.35);
+
+    /* Cards: quiet border highlight instead of a big lift */
+    .card {
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      transition: border-color .25s ease, background-color .25s ease, transform .25s ease;
     }
-    .nav-link.active { color: #22d3ee; }
+    .card:hover { border-color: rgba(34,211,238,0.35); transform: translateY(-2px); }
+
+    .nav-link.active { color: #fafafa; }
+    .nav-link.active::after { transform: scaleX(1); }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px;
+      background: #22d3ee; transform: scaleX(0); transition: transform .25s ease;
+    }
+
     .typing::after { content: '▍'; margin-left: 2px; animation: blink 1s steps(1) infinite; color: #22d3ee; }
     @keyframes blink { 50% { opacity: 0; } }
+
+    .tag {
+      display: inline-block;
+      border-radius: 0.375rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      padding: 0.2rem 0.55rem;
+      font-family: "Geist Mono", ui-monospace, monospace;
+      font-size: 0.7rem;
+      color: #d4d4d8;
+    }
+
+    .eyebrow {
+      font-family: "Geist Mono", ui-monospace, monospace;
+      font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: #71717a;
+    }
+    .eyebrow b { color: #22d3ee; font-weight: 500; }
+
+    .repo-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-family: "Geist Mono", ui-monospace, monospace; font-size: 0.75rem; color: #a1a1aa;
+      transition: color .2s;
+    }
+    .repo-link:hover { color: #67e8f9; }
+
+    /* Code window syntax colours */
+    .tok-k { color: #c084fc; } .tok-c { color: #71717a; } .tok-s { color: #86efac; }
+    .tok-n { color: #67e8f9; } .tok-f { color: #fcd34d; } .tok-p { color: #a1a1aa; }
   </style>
 </head>
 
-<body class="font-sans text-slate-300 antialiased selection:bg-cyan-400/30 selection:text-white">
+<body class="font-sans text-zinc-400 antialiased selection:bg-cyan-400/30 selection:text-white">
 
   <!-- ============ NAVBAR ============ -->
-  <header id="navbar" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+  <header id="navbar" class="fixed inset-x-0 top-0 z-50 border-b border-transparent transition-all duration-300">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-      <a href="#home" class="font-mono text-sm font-medium text-white">
-        <span class="text-cyan-400">~/</span>srikrishna
+      <a href="#home" class="flex items-center gap-2.5 text-sm font-medium text-zinc-100">
+        <span class="flex h-7 w-7 items-center justify-center rounded-md border border-white/10 bg-white/5 font-mono text-[11px] text-cyan-300">SK</span>
+        <span>Sri Krishna Bellam</span>
       </a>
 
       <ul class="hidden items-center gap-8 text-sm md:flex">
-        <li><a href="#about" class="nav-link transition hover:text-cyan-400">About</a></li>
-        <li><a href="#research" class="nav-link transition hover:text-cyan-400">Research</a></li>
-        <li><a href="#projects" class="nav-link transition hover:text-cyan-400">Projects</a></li>
-        <li><a href="#experience" class="nav-link transition hover:text-cyan-400">Experience</a></li>
-        <li><a href="#contact" class="rounded-md border border-cyan-400/40 px-4 py-1.5 text-cyan-300 transition hover:bg-cyan-400/10">Contact</a></li>
+        <li><a href="#about" class="nav-link transition hover:text-zinc-100">About</a></li>
+        <li><a href="#research" class="nav-link transition hover:text-zinc-100">Research</a></li>
+        <li><a href="#projects" class="nav-link transition hover:text-zinc-100">Projects</a></li>
+        <li><a href="#experience" class="nav-link transition hover:text-zinc-100">Experience</a></li>
+        <li><a href="#contact" class="rounded-md bg-zinc-100 px-4 py-1.5 font-medium text-ink-950 transition hover:bg-white">Get in touch</a></li>
       </ul>
 
-      <button id="menu-btn" class="md:hidden rounded p-2 text-slate-300 hover:text-white" aria-label="Toggle menu" aria-expanded="false">
+      <button id="menu-btn" class="md:hidden rounded p-2 text-zinc-300 hover:text-white" aria-label="Toggle menu" aria-expanded="false">
         <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </nav>
 
-    <div id="mobile-menu" class="hidden border-t border-white/5 bg-ink-900/95 backdrop-blur md:hidden">
+    <div id="mobile-menu" class="hidden border-t border-white/5 bg-ink-950/95 backdrop-blur md:hidden">
       <ul class="flex flex-col px-4 py-3 text-sm">
-        <li><a href="#about" class="block py-2.5 hover:text-cyan-400">About</a></li>
-        <li><a href="#research" class="block py-2.5 hover:text-cyan-400">Research</a></li>
-        <li><a href="#projects" class="block py-2.5 hover:text-cyan-400">Projects</a></li>
-        <li><a href="#experience" class="block py-2.5 hover:text-cyan-400">Experience</a></li>
-        <li><a href="#contact" class="block py-2.5 hover:text-cyan-400">Contact</a></li>
+        <li><a href="#about" class="block py-2.5 hover:text-white">About</a></li>
+        <li><a href="#research" class="block py-2.5 hover:text-white">Research</a></li>
+        <li><a href="#projects" class="block py-2.5 hover:text-white">Projects</a></li>
+        <li><a href="#experience" class="block py-2.5 hover:text-white">Experience</a></li>
+        <li><a href="#contact" class="block py-2.5 hover:text-white">Get in touch</a></li>
       </ul>
     </div>
   </header>
 
   <main>
     <!-- ============ HERO ============ -->
-    <section id="home" class="relative flex min-h-screen items-center overflow-hidden">
+    <section id="home" class="relative overflow-hidden">
       <div class="grid-bg pointer-events-none absolute inset-0"></div>
-      <div class="pointer-events-none absolute -top-40 left-1/2 h-[480px] w-[480px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl"></div>
-      <div class="pointer-events-none absolute bottom-0 right-0 h-[320px] w-[320px] rounded-full bg-emerald-500/10 blur-3xl"></div>
+      <div class="pointer-events-none absolute -top-48 left-1/2 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-cyan-500/[0.07] blur-3xl"></div>
 
-      <div class="relative mx-auto w-full max-w-6xl px-4 pt-24 pb-16 sm:px-6">
-        <p class="reveal font-mono text-sm text-cyan-400">&gt; <span id="typed" class="typing"></span></p>
+      <div class="relative mx-auto grid max-w-6xl items-center gap-12 px-4 pt-32 pb-20 sm:px-6 lg:min-h-[92vh] lg:grid-cols-[1.15fr_1fr] lg:pt-28">
+        <div>
+          <p class="reveal inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-zinc-300">
+            <span class="relative flex h-2 w-2">
+              <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60"></span>
+              <span class="relative inline-flex h-2 w-2 rounded-full bg-emerald-400"></span>
+            </span>
+            Open to AI / ML roles &amp; research collaborations
+          </p>
 
-        <h1 class="reveal mt-5 text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
-          Sri Krishna <span class="bg-gradient-to-r from-cyan-300 to-emerald-300 bg-clip-text text-transparent">Bellam</span>
-        </h1>
+          <h1 class="reveal mt-6 text-5xl font-semibold leading-[1.02] tracking-tight text-zinc-50 sm:text-6xl lg:text-7xl">
+            Sri Krishna<br />Bellam
+          </h1>
 
-        <h2 class="reveal mt-4 text-lg font-medium text-slate-400 sm:text-2xl">
-          AI Researcher &middot; Deep Learning from First Principles
-        </h2>
+          <p class="reveal mt-5 text-lg font-medium text-zinc-200 sm:text-xl">
+            AI Researcher <span class="text-zinc-600">/</span> Deep Learning from First Principles
+          </p>
 
-        <p class="reveal mt-6 max-w-2xl leading-relaxed text-slate-400">
-          Master of Science in Artificial Intelligence student at
-          <span class="text-slate-200">Northeastern University</span>. Specialized in foundational machine learning,
-          speech and pronunciation modeling, and generative models for medical imaging.
-        </p>
+          <p class="reveal mt-5 max-w-xl leading-relaxed text-zinc-400">
+            M.S. in Artificial Intelligence at <span class="text-zinc-200">Northeastern University</span>.
+            I work on foundational machine learning, speech and pronunciation modeling, and physics-informed
+            models for healthcare, and I'd rather derive a model than import it.
+          </p>
 
-        <div class="reveal mt-10 flex flex-wrap gap-3">
-          <a href="#research" class="inline-flex items-center gap-2 rounded-md bg-cyan-400 px-5 py-3 text-sm font-semibold text-ink-950 transition hover:bg-cyan-300">
-            View Research
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="https://github.com/SrikrishnaBellam" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-400/40 hover:text-white">
-            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/sri-krishna-bellam-741673223" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-200 transition hover:border-cyan-400/40 hover:text-white">
-            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
-            LinkedIn
-          </a>
+          <p class="reveal mt-6 font-mono text-sm text-cyan-300">&gt; <span id="typed" class="typing"></span></p>
+
+          <div class="reveal mt-8 flex flex-wrap gap-3">
+            <a href="#research" class="inline-flex items-center gap-2 rounded-md bg-cyan-400 px-5 py-2.5 text-sm font-semibold text-ink-950 transition hover:bg-cyan-300">
+              View research
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="https://github.com/SrikrishnaBellam" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-white/25 hover:text-white">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+              GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/sri-krishna-bellam-741673223" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-white/25 hover:text-white">
+              <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <!-- Code window -->
+        <div class="reveal min-w-0">
+          <div class="overflow-hidden rounded-xl border border-white/10 bg-ink-900/80 shadow-2xl shadow-black/40 backdrop-blur">
+            <div class="flex items-center gap-2 border-b border-white/5 px-4 py-3">
+              <span class="h-2.5 w-2.5 rounded-full bg-zinc-700"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-zinc-700"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-zinc-700"></span>
+              <span class="ml-3 font-mono text-xs text-zinc-500">about_me.py</span>
+            </div>
+<pre class="overflow-x-auto px-5 py-5 font-mono text-[12.5px] leading-6 text-zinc-300 sm:text-[13px]"><code><span class="tok-k">class</span> <span class="tok-n">SriKrishnaBellam</span><span class="tok-p">(</span>Researcher<span class="tok-p">):</span>
+    role    <span class="tok-p">=</span> <span class="tok-s">"AI Researcher"</span>
+    current <span class="tok-p">=</span> <span class="tok-s">"M.S. AI @ Northeastern"</span>
+    focus   <span class="tok-p">= [</span><span class="tok-s">"first-principles DL"</span><span class="tok-p">,</span>
+               <span class="tok-s">"speech &amp; pronunciation"</span><span class="tok-p">,</span>
+               <span class="tok-s">"healthcare AI"</span><span class="tok-p">]</span>
+    papers  <span class="tok-p">=</span> <span class="tok-f">2</span>  <span class="tok-c"># IEEE Access, Springer CCIS</span>
+
+    <span class="tok-k">def</span> <span class="tok-f">approach</span><span class="tok-p">(</span>self<span class="tok-p">):</span>
+        <span class="tok-k">return</span> <span class="tok-s">"derive → implement → verify"</span></code></pre>
+          </div>
         </div>
       </div>
 
-      <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-500 transition hover:text-cyan-400" aria-label="Scroll to About">
-        <svg class="h-6 w-6 animate-bounce" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
-      </a>
+      <!-- Stats strip -->
+      <div class="relative mx-auto max-w-6xl px-4 pb-20 sm:px-6">
+        <dl class="reveal grid grid-cols-2 overflow-hidden rounded-xl border border-white/10 bg-white/[0.02] md:grid-cols-4">
+          <div class="border-b border-r border-white/10 p-5 md:border-b-0">
+            <dt class="eyebrow">Publications</dt>
+            <dd class="mt-2 text-3xl font-semibold tracking-tight text-zinc-50">2</dd>
+          </div>
+          <div class="border-b border-white/10 p-5 md:border-b-0 md:border-r">
+            <dt class="eyebrow">Best accuracy</dt>
+            <dd class="mt-2 text-3xl font-semibold tracking-tight text-zinc-50">98%</dd>
+          </div>
+          <div class="border-r border-white/10 p-5">
+            <dt class="eyebrow">Industry roles</dt>
+            <dd class="mt-2 text-3xl font-semibold tracking-tight text-zinc-50">3</dd>
+          </div>
+          <div class="p-5">
+            <dt class="eyebrow">From-scratch builds</dt>
+            <dd class="mt-2 text-3xl font-semibold tracking-tight text-zinc-50">4+</dd>
+          </div>
+        </dl>
+      </div>
     </section>
 
     <!-- ============ ABOUT ============ -->
     <section id="about" class="border-t border-white/5 py-24">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <div class="reveal mb-12 flex items-baseline gap-4">
-          <span class="font-mono text-sm text-cyan-400">01.</span>
-          <h2 class="text-3xl font-bold text-white sm:text-4xl">About Me</h2>
-          <div class="hidden h-px flex-1 bg-white/10 sm:block"></div>
+        <div class="reveal mb-12">
+          <p class="eyebrow"><b>01</b> / About</p>
+          <h2 class="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">I build and understand AI from first principles.</h2>
         </div>
 
         <div class="grid gap-12 lg:grid-cols-5">
           <div class="reveal space-y-5 leading-relaxed lg:col-span-3">
-            <p class="text-xl font-medium text-slate-100">
-              I build and understand AI from <span class="text-cyan-300">first principles</span>.
-            </p>
-            <p class="text-slate-400">
+            <p class="text-zinc-400">
               Rather than treating models as black boxes, I prefer to derive them — writing the autograd engine,
               the tokenizer, the attention block — until every gradient has a reason. That habit carries into my
               research, where I apply foundational methods to speech, signals, and medical imaging.
             </p>
-            <p class="text-slate-400">
-              Beyond the code, I care about AI alignment: as systems get more powerful, they should stay safe and mathematically sound.
+            <p class="text-zinc-400">
+              Beyond the code, I care about AI alignment: as systems get more powerful, they should stay safe and mathematically
+              sound.
             </p>
 
-            <div class="space-y-4 pt-4">
-              <div class="rounded-lg border border-white/5 bg-ink-800/60 p-5">
-                <p class="font-mono text-xs uppercase tracking-wider text-emerald-400">Current</p>
-                <p class="mt-1 font-semibold text-white">M.S. in Artificial Intelligence</p>
-                <p class="text-sm text-slate-400">Northeastern University · Boston, MA</p>
+            <div class="grid gap-4 pt-4 sm:grid-cols-2">
+              <div class="card rounded-lg p-5">
+                <p class="eyebrow !text-emerald-400">Current</p>
+                <p class="mt-2 font-medium text-zinc-100">M.S. in Artificial Intelligence</p>
+                <p class="mt-1 text-sm text-zinc-500">Northeastern University · Boston, MA</p>
               </div>
-              <div class="rounded-lg border border-white/5 bg-ink-800/60 p-5">
-                <p class="font-mono text-xs uppercase tracking-wider text-slate-500">Undergraduate</p>
-                <p class="mt-1 font-semibold text-white">B.Tech in Computer Science Engineering (AI &amp; ML)</p>
-                <p class="text-sm text-slate-400">SRET, Sri Ramachandra Institute of Higher Education and Research (SRIHER) · 2021 – 2025</p>
+              <div class="card rounded-lg p-5">
+                <p class="eyebrow">Undergraduate · 2021 – 2025</p>
+                <p class="mt-2 font-medium text-zinc-100">B.Tech in CSE (AI &amp; ML)</p>
+                <p class="mt-1 text-sm text-zinc-500">SRET, Sri Ramachandra Institute of Higher Education and Research (SRIHER)</p>
               </div>
             </div>
           </div>
 
           <div class="reveal lg:col-span-2">
-            <div class="rounded-xl border border-white/5 bg-ink-800/60 p-6">
-              <p class="font-mono text-sm text-slate-500"><span class="text-cyan-400">$</span> cat stack.txt</p>
+            <div class="card rounded-xl p-6">
+              <p class="font-mono text-sm text-zinc-500"><span class="text-cyan-400">$</span> cat stack.txt</p>
               <div class="mt-5 space-y-5">
                 <div>
-                  <p class="mb-2 font-mono text-xs uppercase tracking-wider text-slate-500">ML / Research</p>
+                  <p class="mb-2 eyebrow">ML / Research</p>
                   <div class="flex flex-wrap gap-2">
                     <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">TensorFlow</span>
                     <span class="tag">Transformers</span><span class="tag">OpenCV</span><span class="tag">Keras</span>
@@ -184,7 +274,7 @@
                   </div>
                 </div>
                 <div>
-                  <p class="mb-2 font-mono text-xs uppercase tracking-wider text-slate-500">Engineering</p>
+                  <p class="mb-2 eyebrow">Engineering</p>
                   <div class="flex flex-wrap gap-2">
                     <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">MERN Stack</span><span class="tag">Git</span>
                   </div>
@@ -197,107 +287,110 @@
     </section>
 
     <!-- ============ RESEARCH ============ -->
-    <section id="research" class="border-t border-white/5 bg-ink-950/40 py-24">
+    <section id="research" class="border-t border-white/5 bg-ink-900/60 py-24">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <div class="reveal mb-12 flex items-baseline gap-4">
-          <span class="font-mono text-sm text-cyan-400">02.</span>
-          <h2 class="text-3xl font-bold text-white sm:text-4xl">Research &amp; Publications</h2>
-          <div class="hidden h-px flex-1 bg-white/10 sm:block"></div>
+        <div class="reveal mb-12 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p class="eyebrow"><b>02</b> / Research</p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">Publications</h2>
+          </div>
+          <p class="max-w-sm text-sm text-zinc-500">Physics-grounded signal processing meets deep learning, for contactless Parkinson's assessment.</p>
         </div>
 
-        <!-- Featured publication -->
-        <article class="card reveal relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-ink-800 to-ink-900 p-6 sm:p-8">
-          <div class="absolute right-0 top-0 h-40 w-40 rounded-full bg-cyan-400/10 blur-3xl"></div>
-          <div class="relative">
-            <div class="flex flex-wrap items-center gap-3">
-              <span class="rounded-full bg-cyan-400/10 px-3 py-1 font-mono text-xs text-cyan-300">Publication</span>
-              <span class="font-mono text-xs text-slate-500">IEEE Access · 2025</span>
-            </div>
-            <h3 class="mt-4 text-xl font-semibold leading-snug text-white sm:text-2xl">
-              Modeling and Classifying Parkinsonian Tremors With Nonlinear Dynamics and Kalman Optimization
-            </h3>
-            <p class="mt-2 text-sm text-slate-500">
-              V. Vanitha, V. Dhilip Kumar, O. Geman, O. Postolache, <span class="font-semibold text-slate-200">S. K. Bellam</span>, R. Toderean
-            </p>
-            <p class="mt-4 max-w-3xl text-slate-400">
-              Estimates Parkinsonian rest-tremor frequency from noisy clinical video. An Extended Lagrangian model
-              captures the tremor's irregular oscillation (Rayleigh dissipation, nonlinear stiffness, external
-              forcing), and Kalman filtering suppresses recording noise. Adaptive Nyquist-compliant sparse sampling
-              keeps it light enough for resource-limited settings. The extracted features then feed a 1D CNN-LSTM
-              that grades disease severity, which points toward remote assessment of patients.
-            </p>
-
-            <div class="mt-6 grid max-w-md grid-cols-2 gap-3">
-              <div class="rounded-lg border border-white/5 bg-ink-900/60 p-4">
-                <p class="text-2xl font-bold text-emerald-300">98%</p>
-                <p class="mt-1 text-xs text-slate-400">severity classification accuracy</p>
+        <div class="space-y-6">
+          <!-- IEEE Access -->
+          <article class="card reveal grid gap-6 rounded-xl p-6 sm:p-8 lg:grid-cols-[1fr_15rem]">
+            <div>
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-2.5 py-0.5 font-mono text-[11px] text-cyan-300">Journal</span>
+                <span class="font-mono text-xs text-zinc-500">IEEE Access · 2025 · Open access</span>
               </div>
-              <div class="rounded-lg border border-white/5 bg-ink-900/60 p-4">
-                <p class="text-2xl font-bold text-white">60</p>
-                <p class="mt-1 text-xs text-slate-400">specialist-annotated patient videos</p>
+              <h3 class="mt-4 text-xl font-semibold leading-snug tracking-tight text-zinc-50 sm:text-2xl">
+                Modeling and Classifying Parkinsonian Tremors With Nonlinear Dynamics and Kalman Optimization
+              </h3>
+              <p class="mt-2 text-sm text-zinc-500">
+                V. Vanitha, V. Dhilip Kumar, O. Geman, O. Postolache, <span class="font-medium text-zinc-200">S. K. Bellam</span>, R. Toderean
+              </p>
+              <p class="mt-4 max-w-3xl leading-relaxed text-zinc-400">
+                Estimates Parkinsonian rest-tremor frequency from noisy clinical video. An Extended Lagrangian model
+                captures the tremor's irregular oscillation (Rayleigh dissipation, nonlinear stiffness, external
+                forcing), and Kalman filtering suppresses recording noise. Adaptive Nyquist-compliant sparse sampling
+                keeps it light enough for resource-limited settings. The extracted features then feed a 1D CNN-LSTM
+                that grades disease severity, which points toward remote assessment of patients.
+              </p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="tag">Lagrangian Mechanics</span><span class="tag">Kalman Filter</span><span class="tag">FFT</span><span class="tag">1D CNN-LSTM</span><span class="tag">Video Analysis</span>
+              </div>
+              <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+                <a href="https://doi.org/10.1109/ACCESS.2025.3603726" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-300 transition hover:text-cyan-200">
+                  Read paper
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+                </a>
+                <span class="font-mono text-xs text-zinc-600">DOI 10.1109/ACCESS.2025.3603726 · Vol. 13</span>
               </div>
             </div>
-
-            <div class="mt-6 flex flex-wrap gap-2">
-              <span class="tag">Lagrangian Mechanics</span><span class="tag">Kalman Filter</span><span class="tag">FFT</span><span class="tag">1D CNN-LSTM</span><span class="tag">Video Analysis</span>
+            <div class="grid grid-cols-2 gap-3 self-start lg:grid-cols-1">
+              <div class="rounded-lg border border-white/5 bg-black/20 p-4">
+                <p class="text-2xl font-semibold tracking-tight text-zinc-50">98%</p>
+                <p class="mt-1 text-xs text-zinc-500">severity classification accuracy</p>
+              </div>
+              <div class="rounded-lg border border-white/5 bg-black/20 p-4">
+                <p class="text-2xl font-semibold tracking-tight text-zinc-50">60</p>
+                <p class="mt-1 text-xs text-zinc-500">specialist-annotated patient videos</p>
+              </div>
             </div>
+          </article>
 
-            <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm">
-              <a href="https://doi.org/10.1109/ACCESS.2025.3603726" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-cyan-400 transition hover:text-cyan-300">
-                Read paper
-                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
-              </a>
-              <span class="text-xs text-slate-500">DOI 10.1109/ACCESS.2025.3603726 · Vol. 13 · Open access</span>
+          <!-- Springer CCIS -->
+          <article class="card reveal grid gap-6 rounded-xl p-6 sm:p-8 lg:grid-cols-[1fr_15rem]">
+            <div>
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="rounded-full border border-white/15 bg-white/5 px-2.5 py-0.5 font-mono text-[11px] text-zinc-300">Conference</span>
+                <span class="font-mono text-xs text-zinc-500">Springer CCIS · MIND-2025 · MNIT Jaipur</span>
+              </div>
+              <h3 class="mt-4 text-lg font-semibold leading-snug tracking-tight text-zinc-50 sm:text-xl">
+                Advanced Kalman Filtering for Video-Based Tremor Assessment in Parkinson's Disease: Comparative Analysis with Deep Learning Classification
+              </h3>
+              <p class="mt-2 text-sm text-zinc-500">
+                V. Vanitha, M. Srivani, <span class="font-medium text-zinc-200">S. K. Bellam</span>, S. K. Mohanavel
+              </p>
+              <p class="mt-4 max-w-3xl leading-relaxed text-zinc-400">
+                Compares three state-space filters (KF, EKF and UKF) for denoising fingertip trajectories tracked with
+                MediaPipe across 60 tremor videos. The UKF suppresses noise best, and its filtered signals feed a
+                CNN-LSTM that classifies UPDRS tremor severity (0–3) at 96.7% precision and 96.9% recall, pointing
+                toward contactless remote assessment.
+              </p>
+              <div class="mt-5 flex flex-wrap gap-2">
+                <span class="tag">KF / EKF / UKF</span><span class="tag">CNN-LSTM</span><span class="tag">MediaPipe</span><span class="tag">MDS-UPDRS</span>
+              </div>
+              <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+                <a href="https://doi.org/10.1007/978-3-032-31233-4_13" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-sm font-medium text-cyan-300 transition hover:text-cyan-200">
+                  Read paper
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+                </a>
+                <span class="font-mono text-xs text-zinc-600">DOI 10.1007/978-3-032-31233-4_13 · CCIS Vol. 2980 · pp. 157–171</span>
+              </div>
             </div>
-          </div>
-        </article>
+            <div class="grid grid-cols-2 gap-3 self-start lg:grid-cols-1">
+              <div class="rounded-lg border border-white/5 bg-black/20 p-4">
+                <p class="text-2xl font-semibold tracking-tight text-zinc-50">97.2%</p>
+                <p class="mt-1 text-xs text-zinc-500">tremor severity accuracy</p>
+              </div>
+              <div class="rounded-lg border border-white/5 bg-black/20 p-4">
+                <p class="text-2xl font-semibold tracking-tight text-zinc-50">10.2 dB</p>
+                <p class="mt-1 text-xs text-zinc-500">SNR improvement (UKF, severity 3)</p>
+              </div>
+            </div>
+          </article>
+        </div>
 
-        <!-- Conference paper -->
-        <article class="card reveal relative mt-6 overflow-hidden rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-8">
-          <div class="flex flex-wrap items-center gap-3">
-            <span class="rounded-full bg-cyan-400/10 px-3 py-1 font-mono text-xs text-cyan-300">Conference Paper</span>
-            <span class="font-mono text-xs text-slate-500">Springer CCIS · MIND-2025 · MNIT Jaipur</span>
-          </div>
-          <h3 class="mt-4 text-lg font-semibold leading-snug text-white sm:text-xl">
-            Advanced Kalman Filtering for Video-Based Tremor Assessment in Parkinson's Disease: Comparative Analysis with Deep Learning Classification
-          </h3>
-          <p class="mt-2 text-sm text-slate-500">
-            V. Vanitha, M. Srivani, <span class="font-semibold text-slate-200">S. K. Bellam</span>, S. K. Mohanavel
-          </p>
-          <p class="mt-4 max-w-3xl text-slate-400">
-            Compares three state-space filters (KF, EKF and UKF) for denoising fingertip trajectories tracked with
-            MediaPipe across 60 tremor videos. The UKF suppresses noise best, and its filtered signals feed a
-            CNN-LSTM that classifies UPDRS tremor severity (0–3) at 96.7% precision and 96.9% recall, pointing
-            toward contactless remote assessment.
-          </p>
-          <div class="mt-6 grid max-w-md grid-cols-2 gap-3">
-            <div class="rounded-lg border border-white/5 bg-ink-900/60 p-4">
-              <p class="text-2xl font-bold text-emerald-300">97.2%</p>
-              <p class="mt-1 text-xs text-slate-400">tremor severity accuracy</p>
-            </div>
-            <div class="rounded-lg border border-white/5 bg-ink-900/60 p-4">
-              <p class="text-2xl font-bold text-white">10.2 dB</p>
-              <p class="mt-1 text-xs text-slate-400">SNR improvement (UKF, severity 3)</p>
-            </div>
-          </div>
-          <div class="mt-6 flex flex-wrap gap-2">
-            <span class="tag">KF / EKF / UKF</span><span class="tag">CNN-LSTM</span><span class="tag">MediaPipe</span><span class="tag">MDS-UPDRS</span>
-          </div>
-          <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm">
-            <a href="https://doi.org/10.1007/978-3-032-31233-4_13" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-cyan-400 transition hover:text-cyan-300">
-              Read paper
-              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
-            </a>
-            <span class="text-xs text-slate-500">DOI 10.1007/978-3-032-31233-4_13 · CCIS Vol. 2980 · pp. 157–171</span>
-          </div>
-        </article>
-
-        <div class="mt-6 grid gap-6 md:grid-cols-2">
-          <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
-            <span class="rounded-full bg-emerald-400/10 px-3 py-1 font-mono text-xs text-emerald-300">Speech &amp; Pronunciation</span>
-            <h3 class="mt-4 text-lg font-semibold text-white">Live Computer-Assisted Pronunciation Training</h3>
-            <p class="mt-1 font-mono text-xs text-slate-500">Data Science Intern · [24]7.ai · Feb – Jul 2025</p>
-            <p class="mt-4 text-slate-400">
+        <h3 class="reveal mt-16 eyebrow">Research experience</h3>
+        <div class="mt-5 grid gap-6 md:grid-cols-2">
+          <article class="card reveal flex flex-col rounded-xl p-6 sm:p-7">
+            <p class="eyebrow !text-emerald-400">Speech &amp; Pronunciation</p>
+            <h4 class="mt-3 text-lg font-semibold tracking-tight text-zinc-50">Live Computer-Assisted Pronunciation Training</h4>
+            <p class="mt-1 font-mono text-xs text-zinc-500">Data Science Intern · [24]7.ai · Feb – Jul 2025</p>
+            <p class="mt-4 flex-1 leading-relaxed text-zinc-400">
               Built a live CAPT system and researched accent mispronunciation detection from the ground up, across
               classical and self-supervised approaches, combined with Goodness of Pronunciation (GOP) scoring.
             </p>
@@ -306,20 +399,20 @@
             </div>
           </article>
 
-          <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
-            <span class="rounded-full bg-emerald-400/10 px-3 py-1 font-mono text-xs text-emerald-300">Medical Imaging</span>
-            <h3 class="mt-4 text-lg font-semibold text-white">Quantifying Cancerous Cells in Histopathology</h3>
-            <p class="mt-1 font-mono text-xs text-slate-500">Student Research Intern · SRIHER Pathology Department</p>
-            <p class="mt-4 text-slate-400">
+          <article class="card reveal flex flex-col rounded-xl p-6 sm:p-7">
+            <p class="eyebrow !text-emerald-400">Medical Imaging</p>
+            <h4 class="mt-3 text-lg font-semibold tracking-tight text-zinc-50">Quantifying Cancerous Cells in Histopathology</h4>
+            <p class="mt-1 font-mono text-xs text-zinc-500">Student Research Intern · SRIHER Pathology Department</p>
+            <p class="mt-4 flex-1 leading-relaxed text-zinc-400">
               Applied classical image processing to quantify cancerous cells in breast cancer histopathology
               images using watershed and topological segmentation algorithms.
             </p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">Otsu</span><span class="tag">Watershed</span><span class="tag">Topological Segmentation</span><span class="tag">OpenCV</span>
             </div>
-            <a href="https://github.com/SrikrishnaBellam/Classical-Image-Processing-on-Histopathological-Image" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
-              View code
+            <a href="https://github.com/SrikrishnaBellam/Classical-Image-Processing-on-Histopathological-Image" target="_blank" rel="noopener" class="repo-link mt-5">
               <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+              View code
             </a>
           </article>
         </div>
@@ -329,104 +422,90 @@
     <!-- ============ PROJECTS ============ -->
     <section id="projects" class="border-t border-white/5 py-24">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <div class="reveal mb-12 flex items-baseline gap-4">
-          <span class="font-mono text-sm text-cyan-400">03.</span>
-          <h2 class="text-3xl font-bold text-white sm:text-4xl">Technical Projects</h2>
-          <div class="hidden h-px flex-1 bg-white/10 sm:block"></div>
+        <div class="reveal mb-12 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p class="eyebrow"><b>03</b> / Projects</p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">Built from the ground up</h2>
+          </div>
+          <a href="https://github.com/SrikrishnaBellam" target="_blank" rel="noopener" class="repo-link">
+            All repositories on GitHub
+            <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
         </div>
 
-        <div class="grid gap-6 sm:grid-cols-2">
-          <!-- Card -->
-          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
+        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- Featured: Transformer -->
+          <article class="card reveal group flex flex-col rounded-xl p-6 lg:col-span-2">
             <div class="flex items-center justify-between">
-              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h10M4 18h16"/></svg>
-              </div>
-              <span class="font-mono text-xs text-slate-500">from scratch</span>
+              <p class="eyebrow">Language models</p>
+              <span class="rounded-full border border-cyan-400/30 bg-cyan-400/10 px-2.5 py-0.5 font-mono text-[11px] text-cyan-300">from scratch</span>
             </div>
-            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">Transformer Language Model</h3>
-            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+            <h3 class="mt-4 text-xl font-semibold tracking-tight text-zinc-50 transition group-hover:text-cyan-200">Transformer Language Model</h3>
+            <p class="mt-3 flex-1 max-w-2xl leading-relaxed text-zinc-400">
               A Llama-style language model built from the ground up and trained on TinyShakespeare. Each piece has
               its own notebook: a micrograd-style autograd engine, a Byte-Pair Encoding tokenizer, attention, RoPE,
               RMSNorm and SwiGLU.
             </p>
             <div class="mt-5 flex flex-wrap gap-2">
-              <span class="tag">Autograd</span><span class="tag">BPE</span><span class="tag">RoPE</span><span class="tag">SwiGLU</span><span class="tag">RMSNorm</span>
+              <span class="tag">Autograd</span><span class="tag">BPE</span><span class="tag">Attention</span><span class="tag">RoPE</span><span class="tag">SwiGLU</span><span class="tag">RMSNorm</span>
             </div>
-            <a href="https://github.com/SrikrishnaBellam/Quick-ML-Refresher" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
-              View code
-              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
-            </a>
+            <div class="mt-6 border-t border-white/5 pt-4">
+              <a href="https://github.com/SrikrishnaBellam/Quick-ML-Refresher" target="_blank" rel="noopener" class="repo-link">
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+                SrikrishnaBellam/Quick-ML-Refresher
+              </a>
+            </div>
           </article>
 
-          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
+          <article class="card reveal group flex flex-col rounded-xl p-6">
             <div class="flex items-center justify-between">
-              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-400/10 text-emerald-300">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h10v10M17 7 7 17M7 17v-4M7 17h4"/></svg>
-              </div>
-              <span class="font-mono text-xs text-slate-500">generative</span>
+              <p class="eyebrow">Generative</p>
             </div>
-            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">MRI-to-CT CycleGAN</h3>
-            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+            <h3 class="mt-4 text-lg font-semibold tracking-tight text-zinc-50 transition group-hover:text-cyan-200">MRI-to-CT CycleGAN</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
               An adversarial model with cycle-consistency loss that translates unpaired MRI images into
               synthetic CT images to support medical diagnosis.
             </p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">CycleGAN</span><span class="tag">Cycle-Consistency</span><span class="tag">Medical Imaging</span>
             </div>
-            <a href="https://github.com/SrikrishnaBellam/CycleGAN-MRI-to-CT" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
-              View code
-              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
-            </a>
+            <div class="mt-6 border-t border-white/5 pt-4">
+              <a href="https://github.com/SrikrishnaBellam/CycleGAN-MRI-to-CT" target="_blank" rel="noopener" class="repo-link">
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+                View code
+              </a>
+            </div>
           </article>
 
-          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
+          <article class="card reveal group flex flex-col rounded-xl p-6">
             <div class="flex items-center justify-between">
-              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2 12h4l2-5 4 10 2-5h8"/></svg>
-              </div>
+              <p class="eyebrow">Signals</p>
               <span class="font-mono text-xs text-emerald-400">95% acc.</span>
             </div>
-            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">ECG Anomaly Detection</h3>
-            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+            <h3 class="mt-4 text-lg font-semibold tracking-tight text-zinc-50 transition group-hover:text-cyan-200">ECG Anomaly Detection</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
               An unsupervised autoencoder that detects ECG anomalies at 95% accuracy, with threshold tuning
               on reconstruction error to separate normal from anomalous beats.
             </p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">Autoencoder</span><span class="tag">Unsupervised</span><span class="tag">Threshold Tuning</span>
             </div>
-            <a href="https://github.com/SrikrishnaBellam/ECG-Anomaly-detection" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
-              View code
-              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
-            </a>
-          </article>
-
-          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
-            <div class="flex items-center justify-between">
-              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-400/10 text-emerald-300">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path stroke-linecap="round" d="M8 7.5l3 8M16 7.5l-3 8M8.5 6h7"/></svg>
-              </div>
-              <span class="font-mono text-xs text-slate-500">local-first</span>
-            </div>
-            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">Agentic Workflows</h3>
-            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
-              A local multi-agent lifestyle assistant orchestrated with LangGraph, using Pydantic for
-              structured state and Ollama for on-device model inference.
-            </p>
-            <div class="mt-5 flex flex-wrap gap-2">
-              <span class="tag">LangGraph</span><span class="tag">Pydantic</span><span class="tag">Ollama</span><span class="tag">Multi-Agent</span>
+            <div class="mt-6 border-t border-white/5 pt-4">
+              <a href="https://github.com/SrikrishnaBellam/ECG-Anomaly-detection" target="_blank" rel="noopener" class="repo-link">
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+                View code
+              </a>
             </div>
           </article>
 
-          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
+          <!-- Featured: GCN -->
+          <article class="card reveal group flex flex-col rounded-xl p-6 lg:col-span-2">
             <div class="flex items-center justify-between">
-              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path stroke-linecap="round" d="M7.3 10.8l9.4-4.6M7.3 13.2l9.4 4.6M19 7.5v9"/></svg>
-              </div>
-              <span class="font-mono text-xs text-emerald-400">&gt;85% acc.</span>
+              <p class="eyebrow">Graph learning</p>
+              <span class="font-mono text-xs text-emerald-400">&gt;85% acc. · 2 labels</span>
             </div>
-            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">Graph Convolutional Network</h3>
-            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+            <h3 class="mt-4 text-xl font-semibold tracking-tight text-zinc-50 transition group-hover:text-cyan-200">Graph Convolutional Network</h3>
+            <p class="mt-3 flex-1 max-w-2xl leading-relaxed text-zinc-400">
               A 2-layer GCN in pure PyTorch (no PyG or DGL) on Zachary's Karate Club. Trained on only two labeled
               nodes, it classifies all 34 members' factions, with a 2D bottleneck layer to visualize how the graph
               Laplacian separates them.
@@ -434,21 +513,21 @@
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">GCN</span><span class="tag">Graph Laplacian</span><span class="tag">Semi-Supervised</span><span class="tag">PyTorch</span>
             </div>
-            <a href="https://github.com/SrikrishnaBellam/GCN-Learning" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
-              View code
-              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
-            </a>
+            <div class="mt-6 border-t border-white/5 pt-4">
+              <a href="https://github.com/SrikrishnaBellam/GCN-Learning" target="_blank" rel="noopener" class="repo-link">
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+                SrikrishnaBellam/GCN-Learning
+              </a>
+            </div>
           </article>
 
-          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
+          <article class="card reveal group flex flex-col rounded-xl p-6">
             <div class="flex items-center justify-between">
-              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-400/10 text-emerald-300">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/></svg>
-              </div>
-              <span class="font-mono text-xs text-slate-500">from scratch</span>
+              <p class="eyebrow">Fundamentals</p>
+              <span class="font-mono text-xs text-zinc-500">no sklearn</span>
             </div>
-            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">Classical ML from Scratch</h3>
-            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+            <h3 class="mt-4 text-lg font-semibold tracking-tight text-zinc-50 transition group-hover:text-cyan-200">Classical ML from Scratch</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
               Core algorithms rebuilt without scikit-learn, with the math written out alongside the code: linear and
               logistic regression, KNN, K-Means, decision trees, Naive Bayes and the perceptron, plus PCA and a
               Multinomial Naive Bayes spam filter.
@@ -456,133 +535,123 @@
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">Gradient Descent</span><span class="tag">K-Means</span><span class="tag">Decision Tree</span><span class="tag">PCA</span><span class="tag">NumPy</span>
             </div>
-            <a href="https://github.com/SrikrishnaBellam/Machine-Learning-from-scratch" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
-              View code
-              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
-            </a>
+            <div class="mt-6 border-t border-white/5 pt-4">
+              <a href="https://github.com/SrikrishnaBellam/Machine-Learning-from-scratch" target="_blank" rel="noopener" class="repo-link">
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+                View code
+              </a>
+            </div>
           </article>
 
-          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
+          <article class="card reveal group flex flex-col rounded-xl p-6">
             <div class="flex items-center justify-between">
-              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path stroke-linecap="round" d="M4 9.3h16M4 14.7h16M9.3 4v16M14.7 4v16"/></svg>
-              </div>
-              <span class="font-mono text-xs text-slate-500">pure NumPy</span>
+              <p class="eyebrow">Vision</p>
+              <span class="font-mono text-xs text-zinc-500">pure NumPy</span>
             </div>
-            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">CNN from Scratch</h3>
-            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+            <h3 class="mt-4 text-lg font-semibold tracking-tight text-zinc-50 transition group-hover:text-cyan-200">CNN from Scratch</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
               A convolutional neural network written without PyTorch or TensorFlow: convolution, pooling, activations,
               softmax cross-entropy and backpropagation by hand, trained on handwritten digit recognition.
             </p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">CNN</span><span class="tag">Backpropagation</span><span class="tag">NumPy</span><span class="tag">Digit Recognition</span>
             </div>
-            <a href="https://github.com/SrikrishnaBellam/Convoluted-Neural-Network-From-Scratch" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
-              View code
-              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
-            </a>
+            <div class="mt-6 border-t border-white/5 pt-4">
+              <a href="https://github.com/SrikrishnaBellam/Convoluted-Neural-Network-From-Scratch" target="_blank" rel="noopener" class="repo-link">
+                <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+                View code
+              </a>
+            </div>
           </article>
-        </div>
 
-        <div class="reveal mt-10 text-center">
-          <a href="https://github.com/SrikrishnaBellam" target="_blank" rel="noopener" class="inline-flex items-center gap-2 font-mono text-sm text-cyan-400 transition hover:text-cyan-300">
-            More on GitHub
-            <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
-          </a>
+          <article class="card reveal group flex flex-col rounded-xl p-6">
+            <div class="flex items-center justify-between">
+              <p class="eyebrow">Agents</p>
+              <span class="font-mono text-xs text-zinc-500">local-first</span>
+            </div>
+            <h3 class="mt-4 text-lg font-semibold tracking-tight text-zinc-50 transition group-hover:text-cyan-200">Agentic Workflows</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-zinc-400">
+              A local multi-agent lifestyle assistant orchestrated with LangGraph, using Pydantic for
+              structured state and Ollama for on-device model inference.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="tag">LangGraph</span><span class="tag">Pydantic</span><span class="tag">Ollama</span><span class="tag">Multi-Agent</span>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
     <!-- ============ EXPERIENCE ============ -->
-    <section id="experience" class="border-t border-white/5 bg-ink-950/40 py-24">
+    <section id="experience" class="border-t border-white/5 bg-ink-900/60 py-24">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
-        <div class="reveal mb-12 flex items-baseline gap-4">
-          <span class="font-mono text-sm text-cyan-400">04.</span>
-          <h2 class="text-3xl font-bold text-white sm:text-4xl">Leadership &amp; Experience</h2>
-          <div class="hidden h-px flex-1 bg-white/10 sm:block"></div>
+        <div class="reveal mb-12">
+          <p class="eyebrow"><b>04</b> / Experience</p>
+          <h2 class="mt-3 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-4xl">Work &amp; leadership</h2>
         </div>
 
-        <article class="card reveal mb-6 rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
-          <p class="font-mono text-xs uppercase tracking-wider text-cyan-400">Work Experience</p>
-          <ol class="relative mt-4 space-y-6 border-l border-white/10 pl-6">
-            <li class="relative">
-              <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-cyan-400 ring-4 ring-ink-800"></span>
-              <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 class="font-semibold text-white">Data Science Intern</h3>
-                <p class="font-mono text-xs text-slate-500">Feb – Jul 2025</p>
-              </div>
-              <p class="text-sm text-slate-400">[24]7.ai · Bengaluru · Hybrid</p>
-              <p class="mt-2 text-sm text-slate-400">Researched accent mispronunciation detection from the ground up: DTW, HMMs, CHMMs and Wav2Vec2.0 / HuBERT, combined with Goodness of Pronunciation.</p>
-            </li>
-            <li class="relative">
-              <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-4 ring-ink-800"></span>
-              <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 class="font-semibold text-white">Deep Learning Engineer</h3>
-                <p class="font-mono text-xs text-slate-500">Aug 2023</p>
-              </div>
-              <p class="text-sm text-slate-400">Geosensing and Imaging Consultancy, Trivandrum · Remote</p>
-            </li>
-            <li class="relative">
-              <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-400 ring-4 ring-ink-800"></span>
-              <div class="flex flex-wrap items-baseline justify-between gap-x-4">
-                <h3 class="font-semibold text-white">Intern</h3>
-                <p class="font-mono text-xs text-slate-500">Feb – Apr 2023</p>
-              </div>
-              <p class="text-sm text-slate-400">STEAM Troops Innovation Labs · Chennai · Hybrid</p>
-              <p class="mt-2 text-sm text-slate-400">Built a project on the MERN stack (React, Express.js, Node.js).</p>
-            </li>
-          </ol>
-        </article>
-
-        <div class="grid gap-6 lg:grid-cols-2">
-          <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
-            <p class="font-mono text-xs uppercase tracking-wider text-cyan-400">Technical Leadership</p>
-            <h3 class="mt-3 text-lg font-semibold text-white">Technical Team Lead</h3>
-            <p class="text-sm text-slate-500">GreenHeap Enterprises LLC.</p>
-            <div class="mt-6 grid grid-cols-2 gap-4">
-              <div class="rounded-lg border border-white/5 bg-ink-900/60 p-4">
-                <p class="text-3xl font-bold text-white">5</p>
-                <p class="mt-1 text-xs text-slate-400">concurrent projects architected</p>
-              </div>
-              <div class="rounded-lg border border-white/5 bg-ink-900/60 p-4">
-                <p class="text-3xl font-bold text-emerald-300">−25%</p>
-                <p class="mt-1 text-xs text-slate-400">development time</p>
+        <!-- Resume-style timeline -->
+        <ol class="reveal divide-y divide-white/5 border-y border-white/5">
+          <li class="grid gap-2 py-6 sm:grid-cols-[11rem_1fr] sm:gap-8">
+            <p class="font-mono text-xs text-zinc-500 sm:pt-1">Feb – Jul 2025</p>
+            <div>
+              <h3 class="font-semibold text-zinc-50">Data Science Intern <span class="font-normal text-zinc-500">· [24]7.ai</span></h3>
+              <p class="mt-0.5 text-sm text-zinc-500">Bengaluru · Hybrid</p>
+              <p class="mt-2 max-w-3xl text-sm leading-relaxed text-zinc-400">Researched accent mispronunciation detection from the ground up: DTW, HMMs, CHMMs and Wav2Vec2.0 / HuBERT, combined with Goodness of Pronunciation.</p>
+            </div>
+          </li>
+          <li class="grid gap-2 py-6 sm:grid-cols-[11rem_1fr] sm:gap-8">
+            <p class="font-mono text-xs text-zinc-500 sm:pt-1">Technical leadership</p>
+            <div>
+              <h3 class="font-semibold text-zinc-50">Technical Team Lead <span class="font-normal text-zinc-500">· GreenHeap Enterprises LLC.</span></h3>
+              <p class="mt-2 max-w-3xl text-sm leading-relaxed text-zinc-400">Directed the architecture of five concurrent projects, streamlining delivery across teams.</p>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="tag">5 concurrent projects architected</span><span class="tag">−25% development time</span>
               </div>
             </div>
-            <p class="mt-5 text-sm text-slate-400">Directed the architecture of five concurrent projects, streamlining delivery across teams.</p>
-          </article>
+          </li>
+          <li class="grid gap-2 py-6 sm:grid-cols-[11rem_1fr] sm:gap-8">
+            <p class="font-mono text-xs text-zinc-500 sm:pt-1">Feb – Apr 2023</p>
+            <div>
+              <h3 class="font-semibold text-zinc-50">Intern <span class="font-normal text-zinc-500">· STEAM Troops Innovation Labs</span></h3>
+              <p class="mt-0.5 text-sm text-zinc-500">Chennai · Hybrid</p>
+              <p class="mt-2 max-w-3xl text-sm leading-relaxed text-zinc-400">Built a project on the MERN stack (React, Express.js, Node.js).</p>
+            </div>
+          </li>
+        </ol>
 
-          <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
-            <p class="font-mono text-xs uppercase tracking-wider text-emerald-400">Community Impact</p>
-            <ol class="relative mt-4 space-y-6 border-l border-white/10 pl-6">
+        <div class="mt-12 grid gap-6 lg:grid-cols-3">
+          <article class="card reveal rounded-xl p-6 sm:p-7">
+            <p class="eyebrow">Community</p>
+            <ol class="relative mt-5 space-y-5 border-l border-white/10 pl-5">
               <li class="relative">
-                <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-cyan-400 ring-4 ring-ink-800"></span>
-                <h3 class="font-semibold text-white">Founder &amp; President</h3>
-                <p class="text-sm text-slate-400">SRET Coding Club · May – Sep 2023</p>
+                <span class="absolute -left-[24.5px] top-1.5 h-2 w-2 rounded-full bg-cyan-400 ring-4 ring-ink-900"></span>
+                <h3 class="font-medium text-zinc-50">Founder &amp; President</h3>
+                <p class="text-sm text-zinc-500">SRET Coding Club · May – Sep 2023</p>
               </li>
               <li class="relative">
-                <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-4 ring-ink-800"></span>
-                <h3 class="font-semibold text-white">Secretary</h3>
-                <p class="text-sm text-slate-400">Machine Learning Club · Nov 2023 – Jun 2024</p>
+                <span class="absolute -left-[24.5px] top-1.5 h-2 w-2 rounded-full bg-zinc-500 ring-4 ring-ink-900"></span>
+                <h3 class="font-medium text-zinc-50">Secretary</h3>
+                <p class="text-sm text-zinc-500">Machine Learning Club · Nov 2023 – Jun 2024</p>
               </li>
               <li class="relative">
-                <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-cyan-400 ring-4 ring-ink-800"></span>
-                <h3 class="font-semibold text-white">Student Council Member</h3>
-                <p class="text-sm text-slate-400">SRIHER · Jul 2023 – Jul 2024 · oversaw the University Yoga Club</p>
+                <span class="absolute -left-[24.5px] top-1.5 h-2 w-2 rounded-full bg-zinc-500 ring-4 ring-ink-900"></span>
+                <h3 class="font-medium text-zinc-50">Student Council Member</h3>
+                <p class="text-sm text-zinc-500">SRIHER · Jul 2023 – Jul 2024 · oversaw the University Yoga Club</p>
               </li>
               <li class="relative">
-                <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-400 ring-4 ring-ink-800"></span>
-                <h3 class="font-semibold text-white">Placement Coordinator</h3>
-                <p class="text-sm text-slate-400">SRIHER Computer Science Department</p>
+                <span class="absolute -left-[24.5px] top-1.5 h-2 w-2 rounded-full bg-zinc-500 ring-4 ring-ink-900"></span>
+                <h3 class="font-medium text-zinc-50">Placement Coordinator</h3>
+                <p class="text-sm text-zinc-500">SRIHER Computer Science Department</p>
               </li>
             </ol>
           </article>
 
-          <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
-            <p class="font-mono text-xs uppercase tracking-wider text-emerald-400">Highlight</p>
-            <h3 class="mt-3 text-lg font-semibold text-white">PersAI · AI Builder Blitz Ideathon</h3>
-            <p class="text-sm text-slate-500">Northeastern AI Makerspace × Microsoft</p>
-            <p class="mt-4 text-sm text-slate-400">
+          <article class="card reveal flex flex-col rounded-xl p-6 sm:p-7">
+            <p class="eyebrow !text-emerald-400">Highlight</p>
+            <h3 class="mt-3 text-lg font-semibold tracking-tight text-zinc-50">PersAI · AI Builder Blitz Ideathon</h3>
+            <p class="text-sm text-zinc-500">Northeastern AI Makerspace × Microsoft</p>
+            <p class="mt-4 flex-1 text-sm leading-relaxed text-zinc-400">
               Co-designed PersAI, a responsible multi-agent assistant that coordinates a student's academics,
               calendar, MBTA, weather, finances and events, and asks for approval before consequential actions.
               One of 5 teams selected to pitch to the Microsoft panel.
@@ -592,14 +661,14 @@
             </div>
           </article>
 
-          <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
-            <p class="font-mono text-xs uppercase tracking-wider text-cyan-400">Certifications</p>
-            <ul class="mt-4 space-y-3 text-sm">
-              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="font-semibold text-white">IBM AI Engineering Professional Certificate</span><span class="font-mono text-xs text-slate-500">IBM · 2026</span></li>
-              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="text-slate-300">Deep Learning with Keras and TensorFlow</span><span class="font-mono text-xs text-slate-500">IBM · 2026</span></li>
-              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="text-slate-300">Machine Learning with Python</span><span class="font-mono text-xs text-slate-500">IBM · 2026</span></li>
-              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="text-slate-300">AI on AMD</span><span class="font-mono text-xs text-slate-500">AMD AI Academy · 2026</span></li>
-              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="text-slate-300">Developing Front-End Apps with React</span><span class="font-mono text-xs text-slate-500">IBM · 2024</span></li>
+          <article class="card reveal rounded-xl p-6 sm:p-7">
+            <p class="eyebrow">Certifications</p>
+            <ul class="mt-5 divide-y divide-white/5 text-sm">
+              <li class="pb-3"><p class="font-medium text-zinc-50">IBM AI Engineering Professional Certificate</p><p class="mt-0.5 font-mono text-xs text-zinc-500">IBM · 2026</p></li>
+              <li class="py-3"><p class="text-zinc-300">Deep Learning with Keras and TensorFlow</p><p class="mt-0.5 font-mono text-xs text-zinc-500">IBM · 2026</p></li>
+              <li class="py-3"><p class="text-zinc-300">Machine Learning with Python</p><p class="mt-0.5 font-mono text-xs text-zinc-500">IBM · 2026</p></li>
+              <li class="py-3"><p class="text-zinc-300">AI on AMD</p><p class="mt-0.5 font-mono text-xs text-zinc-500">AMD AI Academy · 2026</p></li>
+              <li class="pt-3"><p class="text-zinc-300">Developing Front-End Apps with React</p><p class="mt-0.5 font-mono text-xs text-zinc-500">IBM · 2024</p></li>
             </ul>
           </article>
         </div>
@@ -608,54 +677,45 @@
   </main>
 
   <!-- ============ FOOTER / CONTACT ============ -->
-  <footer id="contact" class="border-t border-white/5 py-20">
-    <div class="mx-auto max-w-6xl px-4 text-center sm:px-6">
-      <p class="reveal font-mono text-sm text-cyan-400">05. What's next?</p>
-      <h2 class="reveal mt-3 text-3xl font-bold text-white sm:text-4xl">Let's connect</h2>
-      <p class="reveal mx-auto mt-4 max-w-md text-slate-400">
-        Open to research collaborations, internships, and conversations about building AI from the ground up.
-      </p>
+  <footer id="contact" class="border-t border-white/5 py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="reveal relative overflow-hidden rounded-2xl border border-white/10 bg-ink-900 px-6 py-14 text-center sm:px-12">
+        <div class="grid-bg pointer-events-none absolute inset-0 opacity-70"></div>
+        <div class="pointer-events-none absolute -bottom-32 left-1/2 h-64 w-[600px] -translate-x-1/2 rounded-full bg-cyan-500/10 blur-3xl"></div>
+        <div class="relative">
+          <p class="eyebrow"><b>05</b> / Contact</p>
+          <h2 class="mt-4 text-3xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">Let's build something rigorous.</h2>
+          <p class="mx-auto mt-4 max-w-md text-zinc-400">
+            Open to research collaborations, internships, and conversations about building AI from the ground up.
+          </p>
 
-      <div class="reveal mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-        <a href="mailto:bellamsrikrishna@gmail.com" class="inline-flex w-full items-center justify-center gap-2 rounded-md bg-cyan-400 px-5 py-3 text-sm font-semibold text-ink-950 transition hover:bg-cyan-300 sm:w-auto">
-          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="m3 7 9 6 9-6"/></svg>
-          <span class="break-all">bellamsrikrishna@gmail.com</span>
-        </a>
-        <button id="copy-email" class="inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/10 px-5 py-3 font-mono text-xs text-slate-300 transition hover:border-cyan-400/40 hover:text-white sm:w-auto">
-          copy email
-        </button>
+          <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href="mailto:bellamsrikrishna@gmail.com" class="inline-flex w-full items-center justify-center gap-2 rounded-md bg-cyan-400 px-5 py-3 text-sm font-semibold text-ink-950 transition hover:bg-cyan-300 sm:w-auto">
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" d="m3 7 9 6 9-6"/></svg>
+              <span class="break-all">bellamsrikrishna@gmail.com</span>
+            </a>
+            <button id="copy-email" class="inline-flex w-full items-center justify-center gap-2 rounded-md border border-white/10 bg-white/[0.03] px-5 py-3 font-mono text-xs text-zinc-300 transition hover:border-white/25 hover:text-white sm:w-auto">
+              copy email
+            </button>
+          </div>
+
+          <div class="mt-8 flex justify-center gap-6 text-zinc-500">
+            <a href="https://github.com/SrikrishnaBellam" target="_blank" rel="noopener" class="transition hover:text-zinc-100" aria-label="GitHub">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/sri-krishna-bellam-741673223" target="_blank" rel="noopener" class="transition hover:text-zinc-100" aria-label="LinkedIn">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
 
-      <div class="reveal mt-8 flex justify-center gap-6 text-slate-400">
-        <a href="https://github.com/SrikrishnaBellam" target="_blank" rel="noopener" class="transition hover:text-cyan-400" aria-label="GitHub">
-          <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/in/sri-krishna-bellam-741673223" target="_blank" rel="noopener" class="transition hover:text-cyan-400" aria-label="LinkedIn">
-          <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
-        </a>
+      <div class="mt-10 flex flex-col items-center justify-between gap-3 font-mono text-xs text-zinc-600 sm:flex-row">
+        <p>© <span id="year"></span> Sri Krishna Bellam</p>
+        <p>Built from first principles.</p>
       </div>
-
-      <p class="mt-16 font-mono text-xs text-slate-600">
-        © <span id="year"></span> Sri Krishna Bellam · Built from first principles.
-      </p>
     </div>
   </footer>
-
-  <!-- Shared tag style (Tailwind @apply isn't available on the CDN without a build step) -->
-  <style>
-    .tag {
-      display: inline-block;
-      border-radius: 0.375rem;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.03);
-      padding: 0.25rem 0.6rem;
-      font-family: "Roboto Mono", ui-monospace, monospace;
-      font-size: 0.72rem;
-      color: #cbd5e1;
-      transition: border-color .2s, color .2s;
-    }
-    .card:hover .tag { border-color: rgba(34,211,238,0.2); }
-  </style>
 
   <script>
     // Year
@@ -665,10 +725,10 @@
     const navbar = document.getElementById('navbar');
     const onScroll = () => {
       const scrolled = window.scrollY > 20;
-      navbar.classList.toggle('bg-ink-900/80', scrolled);
+      navbar.classList.toggle('bg-ink-950/80', scrolled);
       navbar.classList.toggle('backdrop-blur-md', scrolled);
-      navbar.classList.toggle('border-b', scrolled);
       navbar.classList.toggle('border-white/5', scrolled);
+      navbar.classList.toggle('border-transparent', !scrolled);
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
@@ -722,7 +782,7 @@
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // Typing effect in hero
-    const phrases = ['building AI from first principles', 'speech & pronunciation modeling', 'generative models for medical imaging'];
+    const phrases = ['building AI from first principles', 'speech & pronunciation modeling', 'physics-informed healthcare AI', 'transformers, autograd & GCNs from scratch'];
     const typedEl = document.getElementById('typed');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
