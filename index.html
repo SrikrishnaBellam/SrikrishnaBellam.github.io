@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sri Krishna Bellam — AI Researcher</title>
-  <meta name="description" content="Sri Krishna Bellam — Software Engineer & AI Researcher. M.S. in Artificial Intelligence, Northeastern University." />
+  <meta name="description" content="Sri Krishna Bellam — AI Researcher, deep learning from first principles. M.S. in Artificial Intelligence, Northeastern University." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -104,7 +104,7 @@
         </h1>
 
         <h2 class="reveal mt-4 text-lg font-medium text-slate-400 sm:text-2xl">
-          Software Engineer &amp; Artificial Intelligence Researcher
+          AI Researcher &middot; Deep Learning from First Principles
         </h2>
 
         <p class="reveal mt-6 max-w-2xl leading-relaxed text-slate-400">
@@ -153,6 +153,9 @@
               the tokenizer, the attention block — until every gradient has a reason. That habit carries into my
               research, where I apply foundational methods to speech, signals, and medical imaging.
             </p>
+            <p class="text-slate-400">
+              Beyond the code, I care about AI alignment: as systems get more powerful, they should stay safe and mathematically sound.
+            </p>
 
             <div class="space-y-4 pt-4">
               <div class="rounded-lg border border-white/5 bg-ink-800/60 p-5">
@@ -163,7 +166,7 @@
               <div class="rounded-lg border border-white/5 bg-ink-800/60 p-5">
                 <p class="font-mono text-xs uppercase tracking-wider text-slate-500">Undergraduate</p>
                 <p class="mt-1 font-semibold text-white">B.Tech in Computer Science Engineering (AI &amp; ML)</p>
-                <p class="text-sm text-slate-400">SRET, Sri Ramachandra Institute of Higher Education and Research (SRIHER)</p>
+                <p class="text-sm text-slate-400">SRET, Sri Ramachandra Institute of Higher Education and Research (SRIHER) · 2021 – 2025</p>
               </div>
             </div>
           </div>
@@ -176,13 +179,14 @@
                   <p class="mb-2 font-mono text-xs uppercase tracking-wider text-slate-500">ML / Research</p>
                   <div class="flex flex-wrap gap-2">
                     <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">TensorFlow</span>
-                    <span class="tag">Transformers</span><span class="tag">OpenCV</span>
+                    <span class="tag">Transformers</span><span class="tag">OpenCV</span><span class="tag">Keras</span>
+                    <span class="tag">Computer Vision</span><span class="tag">Physics-Informed ML</span>
                   </div>
                 </div>
                 <div>
                   <p class="mb-2 font-mono text-xs uppercase tracking-wider text-slate-500">Engineering</p>
                   <div class="flex flex-wrap gap-2">
-                    <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MERN Stack</span>
+                    <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">MERN Stack</span><span class="tag">Git</span>
                   </div>
                 </div>
               </div>
@@ -248,17 +252,57 @@
           </div>
         </article>
 
+        <!-- Conference paper -->
+        <article class="card reveal relative mt-6 overflow-hidden rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-8">
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="rounded-full bg-cyan-400/10 px-3 py-1 font-mono text-xs text-cyan-300">Conference Paper</span>
+            <span class="font-mono text-xs text-slate-500">Springer CCIS · MIND-2025 · MNIT Jaipur</span>
+          </div>
+          <h3 class="mt-4 text-lg font-semibold leading-snug text-white sm:text-xl">
+            Advanced Kalman Filtering for Video-Based Tremor Assessment in Parkinson's Disease: Comparative Analysis with Deep Learning Classification
+          </h3>
+          <p class="mt-2 text-sm text-slate-500">
+            V. Vanitha, M. Srivani, <span class="font-semibold text-slate-200">S. K. Bellam</span>, S. K. Mohanavel
+          </p>
+          <p class="mt-4 max-w-3xl text-slate-400">
+            Compares three state-space filters (KF, EKF and UKF) for denoising fingertip trajectories tracked with
+            MediaPipe across 60 tremor videos. The UKF suppresses noise best, and its filtered signals feed a
+            CNN-LSTM that classifies UPDRS tremor severity (0–3) at 96.7% precision and 96.9% recall, pointing
+            toward contactless remote assessment.
+          </p>
+          <div class="mt-6 grid max-w-md grid-cols-2 gap-3">
+            <div class="rounded-lg border border-white/5 bg-ink-900/60 p-4">
+              <p class="text-2xl font-bold text-emerald-300">97.2%</p>
+              <p class="mt-1 text-xs text-slate-400">tremor severity accuracy</p>
+            </div>
+            <div class="rounded-lg border border-white/5 bg-ink-900/60 p-4">
+              <p class="text-2xl font-bold text-white">10.2 dB</p>
+              <p class="mt-1 text-xs text-slate-400">SNR improvement (UKF, severity 3)</p>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="tag">KF / EKF / UKF</span><span class="tag">CNN-LSTM</span><span class="tag">MediaPipe</span><span class="tag">MDS-UPDRS</span>
+          </div>
+          <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-sm">
+            <a href="https://doi.org/10.1007/978-3-032-31233-4_13" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-cyan-400 transition hover:text-cyan-300">
+              Read paper
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+            <span class="text-xs text-slate-500">DOI 10.1007/978-3-032-31233-4_13 · CCIS Vol. 2980 · pp. 157–171</span>
+          </div>
+        </article>
+
         <div class="mt-6 grid gap-6 md:grid-cols-2">
           <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
             <span class="rounded-full bg-emerald-400/10 px-3 py-1 font-mono text-xs text-emerald-300">Speech &amp; Pronunciation</span>
             <h3 class="mt-4 text-lg font-semibold text-white">Live Computer-Assisted Pronunciation Training</h3>
-            <p class="mt-1 font-mono text-xs text-slate-500">Data Science Intern · 24/7 Customer Pvt. Ltd.</p>
+            <p class="mt-1 font-mono text-xs text-slate-500">Data Science Intern · [24]7.ai · Feb – Jul 2025</p>
             <p class="mt-4 text-slate-400">
-              Built a live CAPT system and evaluated accent mispronunciation detection across classical and
-              self-supervised approaches — from template matching to learned speech representations.
+              Built a live CAPT system and researched accent mispronunciation detection from the ground up, across
+              classical and self-supervised approaches, combined with Goodness of Pronunciation (GOP) scoring.
             </p>
             <div class="mt-5 flex flex-wrap gap-2">
-              <span class="tag">DTW</span><span class="tag">HMM / CHMM</span><span class="tag">Wav2Vec2.0</span><span class="tag">HuBERT</span>
+              <span class="tag">DTW</span><span class="tag">HMM / CHMM</span><span class="tag">Wav2Vec2.0</span><span class="tag">HuBERT</span><span class="tag">GOP</span>
             </div>
           </article>
 
@@ -271,8 +315,12 @@
               images using watershed and topological segmentation algorithms.
             </p>
             <div class="mt-5 flex flex-wrap gap-2">
-              <span class="tag">Watershed</span><span class="tag">Topological Segmentation</span><span class="tag">OpenCV</span>
+              <span class="tag">Otsu</span><span class="tag">Watershed</span><span class="tag">Topological Segmentation</span><span class="tag">OpenCV</span>
             </div>
+            <a href="https://github.com/SrikrishnaBellam/Classical-Image-Processing-on-Histopathological-Image" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
+              View code
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
           </article>
         </div>
       </div>
@@ -298,12 +346,17 @@
             </div>
             <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">Transformer Language Model</h3>
             <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
-              A language model built from the ground up and trained on TinyShakespeare — including a custom
-              autograd engine and a Byte-Pair Encoding tokenizer, with modern architectural components.
+              A Llama-style language model built from the ground up and trained on TinyShakespeare. Each piece has
+              its own notebook: a micrograd-style autograd engine, a Byte-Pair Encoding tokenizer, attention, RoPE,
+              RMSNorm and SwiGLU.
             </p>
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">Autograd</span><span class="tag">BPE</span><span class="tag">RoPE</span><span class="tag">SwiGLU</span><span class="tag">RMSNorm</span>
             </div>
+            <a href="https://github.com/SrikrishnaBellam/Quick-ML-Refresher" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
+              View code
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
           </article>
 
           <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
@@ -321,6 +374,10 @@
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">CycleGAN</span><span class="tag">Cycle-Consistency</span><span class="tag">Medical Imaging</span>
             </div>
+            <a href="https://github.com/SrikrishnaBellam/CycleGAN-MRI-to-CT" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
+              View code
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
           </article>
 
           <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
@@ -338,6 +395,10 @@
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">Autoencoder</span><span class="tag">Unsupervised</span><span class="tag">Threshold Tuning</span>
             </div>
+            <a href="https://github.com/SrikrishnaBellam/ECG-Anomaly-detection" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
+              View code
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
           </article>
 
           <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
@@ -355,6 +416,71 @@
             <div class="mt-5 flex flex-wrap gap-2">
               <span class="tag">LangGraph</span><span class="tag">Pydantic</span><span class="tag">Ollama</span><span class="tag">Multi-Agent</span>
             </div>
+          </article>
+
+          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
+            <div class="flex items-center justify-between">
+              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="5" cy="12" r="2.5"/><circle cx="19" cy="5" r="2.5"/><circle cx="19" cy="19" r="2.5"/><path stroke-linecap="round" d="M7.3 10.8l9.4-4.6M7.3 13.2l9.4 4.6M19 7.5v9"/></svg>
+              </div>
+              <span class="font-mono text-xs text-emerald-400">&gt;85% acc.</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">Graph Convolutional Network</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+              A 2-layer GCN in pure PyTorch (no PyG or DGL) on Zachary's Karate Club. Trained on only two labeled
+              nodes, it classifies all 34 members' factions, with a 2D bottleneck layer to visualize how the graph
+              Laplacian separates them.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="tag">GCN</span><span class="tag">Graph Laplacian</span><span class="tag">Semi-Supervised</span><span class="tag">PyTorch</span>
+            </div>
+            <a href="https://github.com/SrikrishnaBellam/GCN-Learning" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
+              View code
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </article>
+
+          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
+            <div class="flex items-center justify-between">
+              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-emerald-400/10 text-emerald-300">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/></svg>
+              </div>
+              <span class="font-mono text-xs text-slate-500">from scratch</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">Classical ML from Scratch</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+              Core algorithms rebuilt without scikit-learn, with the math written out alongside the code: linear and
+              logistic regression, KNN, K-Means, decision trees, Naive Bayes and the perceptron, plus PCA and a
+              Multinomial Naive Bayes spam filter.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="tag">Gradient Descent</span><span class="tag">K-Means</span><span class="tag">Decision Tree</span><span class="tag">PCA</span><span class="tag">NumPy</span>
+            </div>
+            <a href="https://github.com/SrikrishnaBellam/Machine-Learning-from-scratch" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
+              View code
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </article>
+
+          <article class="card reveal group flex flex-col rounded-xl border border-white/10 bg-ink-800/60 p-6">
+            <div class="flex items-center justify-between">
+              <div class="flex h-11 w-11 items-center justify-center rounded-lg bg-cyan-400/10 text-cyan-300">
+                <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path stroke-linecap="round" d="M4 9.3h16M4 14.7h16M9.3 4v16M14.7 4v16"/></svg>
+              </div>
+              <span class="font-mono text-xs text-slate-500">pure NumPy</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold text-white transition group-hover:text-cyan-300">CNN from Scratch</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-slate-400">
+              A convolutional neural network written without PyTorch or TensorFlow: convolution, pooling, activations,
+              softmax cross-entropy and backpropagation by hand, trained on handwritten digit recognition.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="tag">CNN</span><span class="tag">Backpropagation</span><span class="tag">NumPy</span><span class="tag">Digit Recognition</span>
+            </div>
+            <a href="https://github.com/SrikrishnaBellam/Convoluted-Neural-Network-From-Scratch" target="_blank" rel="noopener" class="mt-5 inline-flex items-center gap-1.5 font-mono text-xs text-cyan-400 transition hover:text-cyan-300">
+              View code
+              <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
           </article>
         </div>
 
@@ -375,6 +501,38 @@
           <h2 class="text-3xl font-bold text-white sm:text-4xl">Leadership &amp; Experience</h2>
           <div class="hidden h-px flex-1 bg-white/10 sm:block"></div>
         </div>
+
+        <article class="card reveal mb-6 rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
+          <p class="font-mono text-xs uppercase tracking-wider text-cyan-400">Work Experience</p>
+          <ol class="relative mt-4 space-y-6 border-l border-white/10 pl-6">
+            <li class="relative">
+              <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-cyan-400 ring-4 ring-ink-800"></span>
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                <h3 class="font-semibold text-white">Data Science Intern</h3>
+                <p class="font-mono text-xs text-slate-500">Feb – Jul 2025</p>
+              </div>
+              <p class="text-sm text-slate-400">[24]7.ai · Bengaluru · Hybrid</p>
+              <p class="mt-2 text-sm text-slate-400">Researched accent mispronunciation detection from the ground up: DTW, HMMs, CHMMs and Wav2Vec2.0 / HuBERT, combined with Goodness of Pronunciation.</p>
+            </li>
+            <li class="relative">
+              <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-4 ring-ink-800"></span>
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                <h3 class="font-semibold text-white">Deep Learning Engineer</h3>
+                <p class="font-mono text-xs text-slate-500">Aug 2023</p>
+              </div>
+              <p class="text-sm text-slate-400">Geosensing and Imaging Consultancy, Trivandrum · Remote</p>
+            </li>
+            <li class="relative">
+              <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-400 ring-4 ring-ink-800"></span>
+              <div class="flex flex-wrap items-baseline justify-between gap-x-4">
+                <h3 class="font-semibold text-white">Intern</h3>
+                <p class="font-mono text-xs text-slate-500">Feb – Apr 2023</p>
+              </div>
+              <p class="text-sm text-slate-400">STEAM Troops Innovation Labs · Chennai · Hybrid</p>
+              <p class="mt-2 text-sm text-slate-400">Built a project on the MERN stack (React, Express.js, Node.js).</p>
+            </li>
+          </ol>
+        </article>
 
         <div class="grid gap-6 lg:grid-cols-2">
           <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
@@ -400,12 +558,17 @@
               <li class="relative">
                 <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-cyan-400 ring-4 ring-ink-800"></span>
                 <h3 class="font-semibold text-white">Founder &amp; President</h3>
-                <p class="text-sm text-slate-400">SRET Coding Club</p>
+                <p class="text-sm text-slate-400">SRET Coding Club · May – Sep 2023</p>
               </li>
               <li class="relative">
                 <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-4 ring-ink-800"></span>
                 <h3 class="font-semibold text-white">Secretary</h3>
-                <p class="text-sm text-slate-400">Machine Learning Club</p>
+                <p class="text-sm text-slate-400">Machine Learning Club · Nov 2023 – Jun 2024</p>
+              </li>
+              <li class="relative">
+                <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-cyan-400 ring-4 ring-ink-800"></span>
+                <h3 class="font-semibold text-white">Student Council Member</h3>
+                <p class="text-sm text-slate-400">SRIHER · Jul 2023 – Jul 2024 · oversaw the University Yoga Club</p>
               </li>
               <li class="relative">
                 <span class="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-slate-400 ring-4 ring-ink-800"></span>
@@ -413,6 +576,31 @@
                 <p class="text-sm text-slate-400">SRIHER Computer Science Department</p>
               </li>
             </ol>
+          </article>
+
+          <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
+            <p class="font-mono text-xs uppercase tracking-wider text-emerald-400">Highlight</p>
+            <h3 class="mt-3 text-lg font-semibold text-white">PersAI · AI Builder Blitz Ideathon</h3>
+            <p class="text-sm text-slate-500">Northeastern AI Makerspace × Microsoft</p>
+            <p class="mt-4 text-sm text-slate-400">
+              Co-designed PersAI, a responsible multi-agent assistant that coordinates a student's academics,
+              calendar, MBTA, weather, finances and events, and asks for approval before consequential actions.
+              One of 5 teams selected to pitch to the Microsoft panel.
+            </p>
+            <div class="mt-5 flex flex-wrap gap-2">
+              <span class="tag">Multi-Agent</span><span class="tag">Responsible AI</span><span class="tag">Top 5</span>
+            </div>
+          </article>
+
+          <article class="card reveal rounded-xl border border-white/10 bg-ink-800/60 p-6 sm:p-7">
+            <p class="font-mono text-xs uppercase tracking-wider text-cyan-400">Certifications</p>
+            <ul class="mt-4 space-y-3 text-sm">
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="font-semibold text-white">IBM AI Engineering Professional Certificate</span><span class="font-mono text-xs text-slate-500">IBM · 2026</span></li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="text-slate-300">Deep Learning with Keras and TensorFlow</span><span class="font-mono text-xs text-slate-500">IBM · 2026</span></li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="text-slate-300">Machine Learning with Python</span><span class="font-mono text-xs text-slate-500">IBM · 2026</span></li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="text-slate-300">AI on AMD</span><span class="font-mono text-xs text-slate-500">AMD AI Academy · 2026</span></li>
+              <li class="flex flex-wrap items-baseline justify-between gap-x-4"><span class="text-slate-300">Developing Front-End Apps with React</span><span class="font-mono text-xs text-slate-500">IBM · 2024</span></li>
+            </ul>
           </article>
         </div>
       </div>
